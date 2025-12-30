@@ -8,7 +8,8 @@ import Main from './pages/Main';
 
 function App() {
   return (
-    <div className="grid grid-cols-[20rem_1fr] min-h-screen">
+    <div className="grid grid grid-cols-[max-content_1fr] min-h-screen h-screen overflow-hidden">
+      {/* <Navbar /> */}
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
