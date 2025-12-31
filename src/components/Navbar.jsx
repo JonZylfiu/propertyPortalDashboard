@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const data = [
   { icon: 'tabler:layout-dashboard', name: 'Dashboard', active: true, path: '' },
-  { icon: 'tabler:building-estate', name: 'My Properties', active: false, path: 'my-properties' },
+  { icon: 'tabler:building-estate', name: 'My Properties', active: false, path: 'properties' },
   { icon: 'tabler:users', name: 'Tenants', active: false },
 ];
 
