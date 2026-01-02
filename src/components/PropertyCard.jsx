@@ -2,6 +2,7 @@ import {  Badge, Button, Card, Group, Image, Text, Stack } from '@mantine/core';
 import { SimpleGrid, Paper, Title } from '@mantine/core';
 import { List, ThemeIcon, rem } from '@mantine/core';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 
 const mockdata = {
     "id": 1,
@@ -45,6 +46,7 @@ const propertyData = [
 
 const PropertyCard = () => {
   const { image, title, about: description, location } = mockdata;
+  
 
   return (
   <Card withBorder radius="md" p="md" shadow="sm">
@@ -104,17 +106,19 @@ const PropertyCard = () => {
     </List>
   </Card.Section>
 
-  <Button 
-    fullWidth 
-    mt="md" 
-    radius="md" 
-    size="sm" 
-    variant="filled" 
-    className='!bg-dark'
-    leftSection={<Icon icon="tabler:edit" width={16} />}
-  >
-    Edit Property
-  </Button>
+  <Link to="/edit/2">
+      <Button 
+        fullWidth 
+        mt="md" 
+        radius="md" 
+        size="sm" 
+        variant="filled" 
+        className='!bg-dark'
+        leftSection={<Icon icon="tabler:edit" width={16} />}
+      >
+        Edit Property
+      </Button>
+  </Link>
 </Card>
   );
 }

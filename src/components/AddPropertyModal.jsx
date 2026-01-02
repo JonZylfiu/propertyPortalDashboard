@@ -4,30 +4,29 @@ import { Modal, Button, TextInput, Stack, Group, NumberInput, Radio, Divider, Li
 import { Icon } from '@iconify/react';
 
 const AddPropertyModal = () => {
-    const [opened, { open, close }] = useDisclosure(false);
-    const [ value, setValue ] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [ value, setValue ] = useState("");
 
-      const [features, setFeatures] = useState(['Ngrohje Qendrore']);
+    const [features, setFeatures] = useState(['Ngrohje Qendrore']);
 
   return (
     <>
-      <Button onClick={open} className='!bg-accent' radius="md">
+      <Button onClick={() => setOpen(!open)} className='!bg-accent' radius="md">
         Add Property
       </Button>
 
       <Modal 
-        opened={opened} 
-        onClose={close} 
+        opened={open} 
+        onClose={() => setOpen(false)} 
         title="Add Property" 
-        centered // E mban në mes të ekranit
+        centered 
         radius="md"
-        size="md" // Mund të jetë xs, sm, md, lg, xl
+        size="md"
         overlayProps={{
           backgroundOpacity: 0.55,
           blur: 3,
         }}
       >
-        {/* Përmbajtja e Popup-it */}
         <Stack gap="md">
           <TextInput 
             label="Property Title" 
@@ -154,17 +153,28 @@ const AddPropertyModal = () => {
               required 
             />
           </Group>
-          <Divider my="sm" label="Lista aktuale" labelPosition="center" />
+          <Divider my="sm" label="Actual Features" labelPosition="center" />
 
-          {/* Lista e elementeve të shtuara */}
           <div className="bg-gray-50 p-4 rounded-md border border-dashed border-gray-300">
             <TextInput 
               label="Feature" 
-              placeholder="Feature..." 
+              placeholder="Feature..."
+              value={value}
+              onChange={e => setValue(e.target.value)}
               radius="md" 
               className='!mb-4'
             />
-            <Button onClick={open} className='!bg-accent !mb-4' radius="md">
+            <Button onClick={(e) => {
+
+                if(value == "") return;
+                setValue("");
+
+                setFeatures((prev) => [
+                    ...prev,
+                    value
+                ])
+              }}
+            className='!bg-accent !mb-4' radius="md">
               Add
             </Button>
             <List
@@ -174,7 +184,7 @@ const AddPropertyModal = () => {
                   <Icon icon="tabler:check" style={{ width: rem(12), height: rem(12) }} />
               }
             >
-              {features.map((f, index) => (
+              {features.length > 0 && features?.map((f, index) => (
                 <List.Item key={index}>
                   <Group justify="space-between">
                     <Text size="sm">{f}</Text>
@@ -190,15 +200,15 @@ const AddPropertyModal = () => {
             </List>
             
             {features.length === 0 && (
-              <Text size="xs" c="dimmed" ta="center">No elements in the list.</Text>
+              <Text size="xs" c="dimmed" ta="center">No features in the list.</Text>
             )}
           </div>
 
           <Group justify="flex-end" mt="xl">
-            <Button variant="subtle" color="gray" onClick={close}>
+            <Button variant="subtle" color="gray" onClick={() => setOpen(!open)}>
               Cancel
             </Button>
-            <Button className='!bg-accent' onClick={close}>
+            <Button className='!bg-accent' onClick={() => setOpen(!open)}>
               Save Changes
             </Button>
           </Group>

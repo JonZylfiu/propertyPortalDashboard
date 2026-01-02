@@ -4,9 +4,8 @@ import { Icon } from '@iconify/react'; // Importojmë komponentin Iconify
 import { Link, useLocation } from 'react-router-dom';
 
 const data = [
-  { icon: 'tabler:layout-dashboard', name: 'Dashboard', active: true, path: '' },
-  { icon: 'tabler:building-estate', name: 'My Properties', active: false, path: 'properties' },
-  { icon: 'tabler:users', name: 'Tenants', active: false },
+  { icon: 'tabler:layout-dashboard', name: 'Dashboard', path: '' },
+  { icon: 'tabler:building-estate', name: 'My Properties', path: 'properties' },
 ];
 
 export default function NavbarIconify() {
